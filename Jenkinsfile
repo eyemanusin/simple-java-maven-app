@@ -48,13 +48,7 @@ pipeline {
                     sh "git push origin HEAD:release/${newVersion}"
                 }
             }
-            post {
-                always {
-                    script {
-                        ontrackCliValidate(stamp: 'GITHUB.RELEASE')
-                    }
-                }
-            }
+            
         }
     }
 }
