@@ -28,7 +28,7 @@ pipeline {
                     def newMinor = minor.toInteger() + 1
 
                     // Create the new version number
-                    def newVersion = "${major}.${newMinor}.${patch}"
+                    def newVersion = "0.0.2"
 
                     // Print the new version
                     echo "New version: ${newVersion}"
