@@ -12,9 +12,7 @@ pipeline {
             }
         }
         stage('Deliver') {
-            when {
-                branch 'release/*'
-            }
+
             environment {
                 GITHUB = credentials('bb398646-df06-4260-9372-16161e2e14ea')
             }
