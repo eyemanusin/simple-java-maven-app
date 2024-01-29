@@ -35,12 +35,13 @@ pipeline {
 
                     // Write the new version back to the file
                     writeFile(file: 'version.txt', text: newVersion)
+		    echo newVersion >> version.txt
 
                     // Create the changelog by running Git log
                     def changelog = sh(script: "git log --no-merges --pretty=format:'%h %s' ${currentVersion}..HEAD", returnStdout: true).trim()
 
                     // Write the changelog to a changelog.txt file
-                    writeFile(file: 'changelog.txt', text: changelog)
+		    echo changelog >> changelog.txt
 
                     // Commit and push the updated version and changelog
                     sh "git add version.txt changelog.txt"
