@@ -1,10 +1,20 @@
 pipeline {
-	agent any
-	stages {
-		stage('Build') {
-			steps {
-				sh '/opt/apache-maven-3.9.6/bin/mvn -B -DskipTests clean package'
-			}
-		}
-	}
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                 echo 'Testing...'
+            }
+        }
+        stage('Deliver'){
+            steps {
+                echo 'Delivering...'
+            }
+        }
+    }
 }
