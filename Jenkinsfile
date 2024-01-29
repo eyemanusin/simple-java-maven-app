@@ -21,8 +21,8 @@ pipeline {
                     // Get the latest version number from a file (or any other source)
                     def currentVersion = readFile('version.txt').trim()
 
-                    // Split the version number into major, minor, and patch parts
-                    def (major, minor, patch) = currentVersion.tokenize('.')
+		    // Split the version number into major, minor, and patch parts
+		    def [major, minor, patch] = currentVersion.tokenize('.')
 
                     // Increment the minor version by 1
                     def newMinor = minor.toInteger() + 1
