@@ -8,12 +8,31 @@ pipeline {
         }
         stage('Test') {
             steps {
-                 echo 'Testing...'
+                echo 'Testing...'
             }
         }
-        stage('Deliver'){
+        stage('Release') {
+            when {
+                branch 'release/*'
+            }
+            environment {
+                GITHUB = credentials('JENKINS_GITHUB_TOKEN')
+            }
             steps {
-                echo 'Delivering...'
+                script {
+                    sh '''
+                    ./gradlew githubRelease --stacktrace --console plain \
+                      -PgitHubToken=${GITHUB} \
+                      -PgitHubCommit=${GIT_COMMIT}
+                    '''
+                }
+            }
+            post {
+                always {
+                    script {
+                        ontrackCliValidate(stamp: 'GITHUB.RELEASE')
+                    }
+                }
             }
         }
     }
