@@ -34,7 +34,6 @@ pipeline {
                     echo "New version: ${newVersion}"
 
                     // Write the new version back to the file
-                    writeFile(file: 'version.txt', text: newVersion)
 		    echo newVersion >> version.txt
 
                     // Create the changelog by running Git log
